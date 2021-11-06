@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SPButton : MonoBehaviour
-{
+public class SPButton : MonoBehaviour {
     public Button startSP;
 
     void Start(){
