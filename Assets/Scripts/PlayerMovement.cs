@@ -48,17 +48,18 @@ public class PlayerMovement : MonoBehaviour {
 
     void Move() {
         // rb.AddForce(new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed));
-        if (Input.GetAxisRaw("Vertical") != 0) {
-            //bugRigidbody.AddForce(transform.up * moveSpeed * Input.GetAxisRaw("Vertical"));
-            bugRigidbody.AddForce(Vector2.up * moveSpeed * Input.GetAxisRaw("Vertical"));
-        }
-
         int s = CheckStrafe();
         if (s != 0) {
             bugRigidbody.AddForce(transform.right * strafeSpeed * s);
-        } else if (Input.GetAxisRaw("Horizontal") != 0) {
-            //bugRigidbody.AddForce(transform.right * strafeSpeed * Input.GetAxisRaw("Horizontal"));
-            bugRigidbody.AddForce(Vector2.right * moveSpeed * Input.GetAxisRaw("Horizontal"));
+        } else {
+            if (Input.GetAxisRaw("Vertical") != 0) {
+                //bugRigidbody.AddForce(transform.up * moveSpeed * Input.GetAxisRaw("Vertical"));
+                bugRigidbody.AddForce(Vector2.up * moveSpeed * Input.GetAxisRaw("Vertical"));
+            }
+            if (Input.GetAxisRaw("Horizontal") != 0) {
+                //bugRigidbody.AddForce(transform.right * strafeSpeed * Input.GetAxisRaw("Horizontal"));
+                bugRigidbody.AddForce(Vector2.right * moveSpeed * Input.GetAxisRaw("Horizontal"));
+            }
         }
 
     }
