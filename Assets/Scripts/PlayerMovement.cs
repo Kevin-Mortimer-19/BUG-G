@@ -41,12 +41,8 @@ public class PlayerMovement : MonoBehaviour {
     // Check for Q/E pressing
     int CheckStrafe() {
         int x = 0;
-        if(Input.GetKey(KeyCode.Q)) {
-            x -= 1;
-        }
-        if(Input.GetKey(KeyCode.E)) {
-            x += 1;
-        }
+        if (Input.GetKey(KeyCode.Q)) x -= 1;
+        if (Input.GetKey(KeyCode.E)) x += 1;
         return x;
     }
 
@@ -57,15 +53,14 @@ public class PlayerMovement : MonoBehaviour {
             bugRigidbody.AddForce(Vector2.up * moveSpeed * Input.GetAxisRaw("Vertical"));
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0) {
+        int s = CheckStrafe();
+        if (s != 0) {
+            bugRigidbody.AddForce(transform.right * strafeSpeed * s);
+        } else if (Input.GetAxisRaw("Horizontal") != 0) {
             //bugRigidbody.AddForce(transform.right * strafeSpeed * Input.GetAxisRaw("Horizontal"));
             bugRigidbody.AddForce(Vector2.right * moveSpeed * Input.GetAxisRaw("Horizontal"));
         }
-        int s = CheckStrafe();
-        if(s != 0) {
-            bugRigidbody.AddForce(transform.right * strafeSpeed * s);
-        }
-        
+
     }
 
     void FaceMouse() {
